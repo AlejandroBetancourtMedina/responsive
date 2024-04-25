@@ -1,11 +1,11 @@
 import Header from "./components/Header";
-import Endpoint from "./components/Input";
+import LandingPage from "./components/LandingPage";
 
 export default function App() {
   return (
     <>
       <Header/>
-      <Endpoint/>
+      <LandingPage/>
       
     </>
   );
