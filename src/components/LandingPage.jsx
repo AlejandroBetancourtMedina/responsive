@@ -8,7 +8,7 @@ export default function LandingPage() {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState('');
 
-  const handleValidationClick = async () => {
+  const handleClick = async () => {
     setIsLoading(true);
     setError(null);
     setResponseDataHTML([]);
@@ -72,22 +72,26 @@ export default function LandingPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full mt-[5rem] max-w-6xl p-8 space-y-3 rounded-xl bg-white shadow-lg">
-          <Input
-            className="w-full px-4 py-2 border rounded-md"
-            type="text"
-            color="su"
-            placeholder="URL"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <Button
-            className="w-full px-4 py-2 text-white bg-success rounded-md hover:bg-success-500"
-            onClick={handleValidationClick}
-            disabled={isLoading || !url}
-          >
-            {isLoading ? "Cargando..." : "Validar HTML y CSS"}
-          </Button>
-          {error && <div className="mt-4 p-8 text-center text-red-500">{error}</div>}
+          <div className="flex flex-row gap-8 justify-center items-center">
+            <Input
+              type="text"
+              label="Url"
+              variant="bordered"
+              placeholder="https://tuweb.com"
+              className="max-w-5xl max-h-20"
+              color="success"
+              onChange={(e) => setUrl(e.target.value)}
+              />
+            <Button
+              color="success"
+              variant="bordered"
+              className="max-w-xl "
+              isLoading={isLoading}
+              onClick={handleClick}
+            >
+              {isLoading ? "Loading" : "Cargar"}
+            </Button>          {error && <div className="mt-4 p-8 text-center text-red-500">{error}</div>}
+          </div>
           {!isLoading && !error && (
             <div className="mt-4">
               {renderValidationResultsHTML(responseDataHTML)}
